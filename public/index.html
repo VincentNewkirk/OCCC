@@ -7,7 +7,14 @@
 </head>
 <body>
   <div ng-app="formSignupApp">
-    <button>XHR Test</button>
+    <div ng-controller="formSignupController">
+      <form>
+        Email: <input type="text" ng-model="user.email" /><br />
+        Password: <input type="password" ng-model="user.password" /><br />
+        <input type="submit" ng-click="update(user)" value="Save" />
+      </form>
+    </div>
   </div>
+  <script src="app/controller.js"></script>
 </body>
 </html>

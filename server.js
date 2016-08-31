@@ -4,6 +4,7 @@ const firebase = require('firebase');
 
 //not sure if this will work with out exporting config
 //might need to auth any domain using firebase in the console - auth
+//form needs homepage redirect, or login page
 
 var config = {
   apiKey: "AIzaSyDr-cAxhiDSQqlQfe5jGc-5UsQ0l6La5FE",
@@ -21,9 +22,12 @@ function emailSignup(email, password) {
   });
 }
 
-app.get('/testFBEmailSignup', (req, res) => {
-  emailSignup('test@something.com', 'idk123');
+app.post('/testFBEmailSignup', (req, res) => {
+  console.log(res)
+  // emailSignup('test@something.com', 'idk123');
 })
+
+app.use(express.static('public'));
 
 app.listen(4002, (req, res) => {
   console.log('Server listening on 4002');
