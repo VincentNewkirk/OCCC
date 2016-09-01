@@ -1,7 +1,6 @@
 const express = require('express');
 const firebase = require('firebase');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
 
 const app = express();
 const PORT = process.env.PORT || 4002;
@@ -32,11 +31,19 @@ function emailSignup(email, password) {
 }
 
 app.post('/signup', (req, res) => {
-  console.log(`${req.body.email} ${req.body.password} : ${typeof req.body.email} ${typeof req.body.password}`);
-  bcrypt.genSalt(5, (err, salt) => {
-    bcrypt.hash(req.body.password, salt, (err, hash) => {
-      emailSignup(req.body.email, hash);
-    });
+  emailSignup(req.body.email, req.body.password);
+});
+app.post('/login', (req, res) => {
+  firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password)
+  .catch((error) => {
+    console.log(`${error.code} : ${error.message}`);
+  });
+});
+app.get('/signout', (req, res) => {
+  firebase.auth().signOut().then(() => {
+  // Sign-out successful.
+  }, (error) => {
+    console.log(`Error with signout ${error}`);
   });
 });
 
