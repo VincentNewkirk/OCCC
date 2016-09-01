@@ -1,7 +1,9 @@
 const express = require('express');
-const app = express();
 const firebase = require('firebase');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = process.env.PORT || 4002;
 
 //not sure if this will work with out exporting config
 //might need to auth any domain using firebase in the console - auth
@@ -17,22 +19,23 @@ const config = {
 firebase.initializeApp(config);
 
 /* MIDDLEWARE */
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 function emailSignup(email, password) {
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
     let errorCode = error.code;
     let errorMessage = error.message;
   });
 }
 
 app.post('/testFBEmailSignup', (req, res) => {
-  console.log(req.body.email + " " + req.body.password + " " + typeof req.body.email + typeof req.body.password)
+  console.log(`${req.body.email} ${req.body.password} : ${typeof req.body.email} ${typeof req.body.password}`);
   emailSignup(req.body.email, req.body.password);
-})
+});
 
 app.use(express.static('public'));
 
-app.listen(4002, (req, res) => {
-  console.log('Server listening on 4002');
-})
+app.listen(PORT, (req, res) => {
+  console.log(`Server listening on ${PORT}`);
+});
