@@ -1,8 +1,8 @@
 const express = require('express');
-const app = express();
 const firebase = require('firebase');
 const bodyParser = require('body-parser');
 
+const app = express();
 const PORT = process.env.PORT || 4002;
 
 //not sure if this will work with out exporting config
@@ -19,9 +19,8 @@ const config = {
 firebase.initializeApp(config);
 
 /* MIDDLEWARE */
-app.use(bodyParser.json({
-  extended: true,
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 function emailSignup(email, password) {
   firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
@@ -31,7 +30,7 @@ function emailSignup(email, password) {
 }
 
 app.post('/testFBEmailSignup', (req, res) => {
-  console.log(req.body.email + " " + req.body.password + " " + typeof req.body.email + typeof req.body.password)
+  console.log(`${req.body.email} ${req.body.password} : ${typeof req.body.email} ${typeof req.body.password}`);
   emailSignup(req.body.email, req.body.password);
 });
 
