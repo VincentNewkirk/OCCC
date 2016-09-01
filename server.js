@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const firebase = require('firebase');
+const bodyParser = require('body-parser');
+
+const PORT = process.ENV.PORT || 3000;
 
 //not sure if this will work with out exporting config
 //might need to auth any domain using firebase in the console - auth
@@ -12,23 +15,27 @@ const config = {
   databaseURL: "https://calendar-test-950b1.firebaseio.com",
   storageBucket: "calendar-test-950b1.appspot.com",
 };
-
 firebase.initializeApp(config);
 
+/* MIDDLEWARE */
+app.use(bodyParser.json({
+  extended: true,
+});
+
 function emailSignup(email, password) {
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-    var errorCode = error.code;
-    var errorMessage = error.message;
+  firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
+    let errorCode = error.code;
+    let errorMessage = error.message;
   });
 }
 
 app.post('/testFBEmailSignup', (req, res) => {
-  console.log(res);
-  // emailSignup('test@something.com', 'idk123');
+  console.log(req.body.email + " " + req.body.password + " " + typeof req.body.email + typeof req.body.password)
+  emailSignup(req.body.email, req.body.password);
 });
 
 app.use(express.static('public'));
 
-app.listen(4002, (req, res) => {
-  console.log('Server listening on 4002');
+app.listen(PORT, (req, res) => {
+  console.log(`Server listening on ${PORT}`);
 });
