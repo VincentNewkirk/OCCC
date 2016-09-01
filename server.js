@@ -3,7 +3,7 @@ const app = express();
 const firebase = require('firebase');
 const bodyParser = require('body-parser');
 
-const PORT = process.ENV.PORT || 3000;
+const PORT = process.env.PORT || 4002;
 
 //not sure if this will work with out exporting config
 //might need to auth any domain using firebase in the console - auth
@@ -20,7 +20,7 @@ firebase.initializeApp(config);
 /* MIDDLEWARE */
 app.use(bodyParser.json({
   extended: true,
-});
+}));
 
 function emailSignup(email, password) {
   firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
