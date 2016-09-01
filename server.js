@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 //not sure if this will work with out exporting config
 //might need to auth any domain using firebase in the console - auth
 //form needs homepage redirect, or login page
+//make forms use ng-repeat
 
 const config = {
   apiKey: "AIzaSyDr-cAxhiDSQqlQfe5jGc-5UsQ0l6La5FE",
