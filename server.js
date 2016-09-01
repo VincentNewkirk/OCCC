@@ -26,8 +26,8 @@ function emailSignup(email, password) {
 }
 
 app.post('/testFBEmailSignup', (req, res) => {
-  console.log(req.body)
-  // emailSignup('test@something.com', 'idk123');
+  console.log(req.body.email + " " + req.body.password + " " + typeof req.body.email + typeof req.body.password)
+  emailSignup(req.body.email, req.body.password);
 })
 
 app.use(express.static('public'));
