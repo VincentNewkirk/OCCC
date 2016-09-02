@@ -2,8 +2,8 @@ const express = require('express');
 const firebase = require('firebase');
 const bodyParser = require('body-parser');
 
-const app = express();
 const PORT = process.env.PORT || 4002;
+const app = express();
 
 //not sure if this will work with out exporting config
 //might need to auth any domain using firebase in the console - auth
@@ -23,22 +23,28 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-function emailSignup(email, password) {
-  firebase.auth().createUserWithEmailAndPassword(email, password)
+app.post('/signup', (req, res) => {
+  console.log(req.body);
+  let db = firebase.database().ref(`users`);
+  db.child(`${req.body.username}`).set({
+    first_name: req.body.firstName,
+    last_name: req.body.lastName,
+    email: req.body.email,
+    phone: req.body.phone,
+  });
+  firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password)
   .catch((error) => {
     console.log(`${error.code} : ${error.message}`);
   });
-}
-
-app.post('/signup', (req, res) => {
-  emailSignup(req.body.email, req.body.password);
 });
+
 app.post('/login', (req, res) => {
   firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password)
   .catch((error) => {
     console.log(`${error.code} : ${error.message}`);
   });
 });
+
 app.get('/signout', (req, res) => {
   firebase.auth().signOut().then(() => {
   // Sign-out successful.
@@ -47,6 +53,4 @@ app.get('/signout', (req, res) => {
   });
 });
 
-app.listen(PORT, (req, res) => {
-  console.log(`Server listening on ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
