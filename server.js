@@ -9,6 +9,8 @@ const app = express();
 //might need to auth any domain using firebase in the console - auth
 //form needs homepage redirect, or login page
 //make forms use ng-repeat
+//pages load angular each time they load...
+//adobe sign free trial
 
 const config = {
   apiKey: "AIzaSyDr-cAxhiDSQqlQfe5jGc-5UsQ0l6La5FE",
@@ -41,7 +43,7 @@ app.post('/signup', (req, res) => {
 app.post('/login', (req, res) => {
   firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password)
   .catch((error) => {
-    console.log(`${error.code} : ${error.message}`);
+    console.log(`this is the firebase error code from login- ${error.code} : ${error.message}`);
   });
 });
 
@@ -51,6 +53,10 @@ app.get('/signout', (req, res) => {
   }, (error) => {
     console.log(`Error with signout ${error}`);
   });
+});
+
+app.post('/testPage', (req, res) => {
+  console.log(req.body)
 });
 
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
