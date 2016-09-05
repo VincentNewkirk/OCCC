@@ -33,9 +33,9 @@ angular.module('testPage', [])
   .controller('testPageController', ['$scope', ($scope) => {
     $scope.testFunction = function () {
       const req = new XMLHttpRequest();
-      req.open('POST', 'http://localhost:4002/testPage');
+      req.open('GET', 'http://localhost:4002/testPage');
+      req.setRequestHeader("Authorization", "Negotiate");
       req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-      // req.send(JSON.stringify(firebase.auth().currentUser));
-      console.log(firebase.auth().currentUser)
+      req.send();
     };
   }]);

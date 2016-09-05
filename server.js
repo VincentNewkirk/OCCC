@@ -11,6 +11,7 @@ const app = express();
 //make forms use ng-repeat
 //pages load angular each time they load...
 //adobe sign free trial
+//firebase has simple UI for logins
 
 const config = {
   apiKey: "AIzaSyDr-cAxhiDSQqlQfe5jGc-5UsQ0l6La5FE",
@@ -55,8 +56,10 @@ app.get('/signout', (req, res) => {
   });
 });
 
-app.post('/testPage', (req, res) => {
-  console.log(req.body)
+app.get('/testPage', (req, res) => {
+  console.log('attempting to find current user.. ')
+  var user = firebase.auth().currentUser;
+  console.log(user)
 });
 
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
