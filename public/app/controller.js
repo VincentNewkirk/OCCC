@@ -2,10 +2,16 @@ angular.module('formSignupApp', [])
   .controller('formSignupController', ['$scope', ($scope) => {
     $scope.email = '';
     $scope.password = '';
-    $scope.firstName = '';
-    $scope.lastName = '';
     $scope.phone = '';
-    $scope.username = '';
+    $scope.fullName = '';
+    $scope.dobDay = '';
+    $scope.dobMonth = '';
+    $scope.dobYear = '';
+    $scope.gender = '';
+    $scope.id = '';
+    $scope.pin = '';
+    $scope.idMethod = '';
+
     $scope.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     $scope.update = (user) => {
       console.log(user);

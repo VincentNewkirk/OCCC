@@ -30,7 +30,7 @@ app.use(express.static('public'));
 
 app.post('/signup', (req, res) => {
   let err = checkReqBody(req.body);
-
+  console.log(err);
   firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password)
   .catch((error) => {
     err = true;
@@ -38,12 +38,19 @@ app.post('/signup', (req, res) => {
   })
   .then(() => {
     if(!err) {
+      console.log(req.body);
       let db = firebase.database().ref(`users`);
       let email = req.body.email.replace('.', '');
       db.child(`${email}`).set({
         fullName: req.body.fullName,
         email: req.body.email,
         phone: req.body.phone,
+        dobDay: req.body.dobDay,
+        dobMonth: req.body.dobMonth,
+        dobYear: req.body.dobYear,
+        gender: req.body.gender,
+        idMethod: req.body.idMethod,
+        idNumber: req.body.idNumber,
       });
     }
   });
