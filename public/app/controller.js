@@ -6,6 +6,7 @@ angular.module('formSignupApp', [])
     $scope.lastName = '';
     $scope.phone = '';
     $scope.username = '';
+    $scope.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     $scope.update = (user) => {
       console.log(user);
       const req = new XMLHttpRequest();
