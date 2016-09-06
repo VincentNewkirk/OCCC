@@ -17,6 +17,8 @@ const app = express();
 //dont forget about the app
 //seems to be some lag with the xhr returning simple text
 //make sure if 2 users login at the same time, they get the right cookie
+//make xhr not check if 200 or not run as async?
+//had to set 2 second timer waiting for xhr with uid, might be fb is mad
 
 const config = {
   apiKey: "AIzaSyDr-cAxhiDSQqlQfe5jGc-5UsQ0l6La5FE",
@@ -48,9 +50,9 @@ app.post('/signup', (req, res) => {
 
 app.post('/login', (req, res) => {
   firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password)
-  .catch((error) => {
-    console.log(`this is the firebase error code from login- ${error.code} : ${error.message}`);
-  });
+  setTimeout(function () {
+    res.send(firebase.auth().currentUser.uid)
+    }, 2000)
 });
 
 app.get('/signout', (req, res) => {
@@ -62,7 +64,7 @@ app.get('/signout', (req, res) => {
 });
 
 app.get('/testPage', (req, res) => {
-  res.send(`${firebase.auth().currentUser.uid}`)
+  
 });
 
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
