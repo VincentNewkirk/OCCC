@@ -29,12 +29,22 @@ angular.module('formLoginApp', [])
     };
   }]);
 
-angular.module('testPage', [])
-  .controller('testPageController', ['$scope', ($scope) => {
+angular.module('testPage', ['ngCookies'])
+  .controller('testPageController', ['$scope', '$cookies', ($scope, $cookies) => {
     $scope.testFunction = function () {
       const req = new XMLHttpRequest();
-      req.open('GET', 'http://localhost:4002/testPage');
-      req.setRequestHeader("Authorization", "Negotiate");
+      req.open('GET', 'http://localhost:4002/testPage', true);
+      req.onload = (serverResponse) => {
+        if (req.readyState === 4) {
+          if (req.status === 200) {
+            $cookies.put("user", req.response)
+          } else {
+            console.log('no response')
+          }
+        } else {
+          console.log('no response')
+        }
+      }
       req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
       req.send();
     };
