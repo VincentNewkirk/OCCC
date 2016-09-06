@@ -17,26 +17,44 @@ const config = {
   storageBucket: "calendar-test-950b1.appspot.com",
 };
 firebase.initializeApp(config);
+// firebase.database.enableLogging((logMessage) => {
+//   console.log(`${new Date().toISOString()} : ${logMessage}`);
+// });
 
-/* MIDDLEWARE */
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.post('/signup', (req, res) => {
-  console.log(req.body);
-  let db = firebase.database().ref(`users`);
-  db.child(`${req.body.username}`).set({
-    first_name: req.body.firstName,
-    last_name: req.body.lastName,
-    email: req.body.email,
-    phone: req.body.phone,
-  });
+  let err = checkReqBody(req.body);
+
   firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password)
   .catch((error) => {
+    err = true;
     console.log(`${error.code} : ${error.message}`);
+  })
+  .then(() => {
+    if(!err) {
+      let db = firebase.database().ref(`users`);
+      let email = req.body.email.replace('.', '');
+      db.child(`${email}`).set({
+        fullName: req.body.fullName,
+        email: req.body.email,
+        phone: req.body.phone,
+      });
+    }
   });
 });
+const checkReqBody = reqBody => {
+  if(reqBody.fullName.length > 30 || !validateEmail(reqBody.email) || !reqBody.phone.length >= 7) {
+    return true;
+  }
+  return false;
+};
+const validateEmail = email => {
+  let re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};
 
 app.post('/login', (req, res) => {
   firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password)
