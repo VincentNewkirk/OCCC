@@ -12,6 +12,37 @@ angular.module('formSignupApp', [])
     $scope.pin = '';
     $scope.idMethod = '';
 
+    $scope.accountInfo = [
+      {
+        model: {
+          key: 'user.fullName',
+        },
+        placeholder: 'Full Name',
+        fa: 'fa-user',
+      },
+      {
+        model: {
+          key: 'user.email',
+        },
+        placeholder: 'Email Address',
+        fa: 'fa-envelope',
+      },
+      {
+        model: {
+          key: 'user.password',
+        },
+        placeholder: 'Password',
+        fa: 'fa-key',
+      },
+      {
+        model: {
+          key: 'user.phone',
+        },
+        placeholder: 'Phone Number',
+        fa: 'fa-phone',
+      },
+    ];
+
     $scope.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     $scope.update = (user) => {
       const req = new XMLHttpRequest();

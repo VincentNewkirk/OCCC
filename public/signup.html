@@ -6,29 +6,27 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="styles/signup.css">
+  <!-- iconj.com favicon code -->
+  <link rel="shortcut icon" href="http://www.iconj.com/icon.php?pid=1idgst8ijt" type="image/x-icon" />
+  <link rel="shortcut icon" href="http://www.iconj.com/gif_icon.php?pid=1idgst8ijt" type="image/gif" />
+  <!-- end of iconj.com favicon code -->
 </head>
 <body>
   <div ng-app="formSignupApp">
       <div ng-controller="formSignupController" class="container">
+      <ul style="list-style:none;">
       <form>
         <div class="row">
           <h4>Account Information</h4>
-          <div class="input-group input-group-icon">
-            <input type="text" ng-model="user.fullName" placeholder="Full Name"/>
-            <div class="input-icon"><i class="fa fa-user"></i></div>
-          </div>
-          <div class="input-group input-group-icon">
-            <input type="email" ng-model="user.email" placeholder="Email Adress"/>
-            <div class="input-icon"><i class="fa fa-envelope"></i></div>
-          </div>
-          <div class="input-group input-group-icon">
-            <input type="password" ng-model="user.password" placeholder="Password"/>
-            <div class="input-icon"><i class="fa fa-key"></i></div>
-          </div>
-          <div class="input-group input-group-icon">
-            <input type="text" ng-model="user.phone" placeholder="Phone Number"/>
-            <div class="input-icon"><i class="fa fa-phone"></i></div>
-          </div>
+
+          <li class="animate-repeat" ng-repeat="input in accountInfo">
+            <div class="input-group input-group-icon">
+            <!-- NG MODEL IS BROKEN HERE, NEED TO FIX IT -->
+              <input type="text" placeholder="{{ input.placeholder }}" ng-model=""/>
+              <div class="input-icon"><i class="fa {{input.fa}}"></i></div>
+            </div>
+          </li>
+
         </div>
         <div class="row">
           <div class="col-half">
@@ -58,18 +56,18 @@
         <div class="row">
           <h4>Identification Type</h4>
           <div class="input-group">
-            <input ng-model="user.idMethod" type="radio" name="payment-method" value="card" id="payment-method-card" checked="true"/>
-            <label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>Social Security Number</span></label>
-            <input ng-model="user.idMethod" type="radio" name="payment-method" value="paypal" id="payment-method-paypal"/>
-            <label for="payment-method-paypal"> <span><i class="fa fa-cc-paypal"></i>License Number</span></label>
+            <input ng-model="user.idMethod" type="radio" name="payment-method" value="card" id="idMethodSSN" checked="true"/>
+            <label for="idMethodSSN"><span><i class="fa fa-lock"></i>Social Security Number</span></label>
+            <input ng-model="user.idMethod" type="radio" name="payment-method" value="paypal" id="idMethodLN"/>
+            <label for="idMethodSSN"> <span><i class="fa fa-car"></i>License Number</span></label>
           </div>
           <div class="input-group input-group-icon">
-            <input ng-model="user.idNumber" type="text" placeholder="Card Number"/>
-            <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+            <input ng-model="user.idNumber" type="text" placeholder="Identification Number"/>
+            <div class="input-icon"><i class="fa fa-eye"></i></div>
           </div>
           <div class="col-half">
             <div class="input-group input-group-icon">
-              <input g-model="user.pin" type="text" placeholder="Card CVC"/>
+              <input g-model="user.pin" type="text" placeholder="PIN Number"/>
               <div class="input-icon"><i class="fa fa-user"></i></div>
             </div>
           </div>
@@ -93,6 +91,7 @@
           </div>
         </div>
       </form>
+      </ul>
       <input type="submit" ng-click="update(user)" value="Sign Up" />
     </div>
    </div>
