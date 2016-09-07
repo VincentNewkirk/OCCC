@@ -19,6 +19,7 @@ const app = express();
 //make sure if 2 users login at the same time, they get the right cookie
 //make xhr not check if 200 or not run as async?
 //had to set 2 second timer waiting for xhr with uid, might be fb is mad
+//remove old calendar dates by day (so week old items, check once per day)
 
 const config = {
   apiKey: "AIzaSyDr-cAxhiDSQqlQfe5jGc-5UsQ0l6La5FE",
