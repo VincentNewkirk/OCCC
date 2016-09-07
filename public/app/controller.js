@@ -48,7 +48,15 @@ angular.module('formLoginApp', ['ngCookies'])
 
 angular.module('visitForm', [])
   .controller('visitFormController', ['$scope', ($scope) => {
-    $scope.formFields = [{name: 'test1'}, {name: 'test2'}];
+    $scope.formFields = [
+      {
+        name: 'test1',
+        fa: 'fa fa-key',
+      },
+      {
+        name: 'test2'
+      },
+    ];
 
 
 /*    $scope.update = (user) => {
