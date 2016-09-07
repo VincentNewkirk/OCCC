@@ -2,12 +2,18 @@ angular.module('formSignupApp', [])
   .controller('formSignupController', ['$scope', ($scope) => {
     $scope.email = '';
     $scope.password = '';
-    $scope.firstName = '';
-    $scope.lastName = '';
     $scope.phone = '';
-    $scope.username = '';
+    $scope.fullName = '';
+    $scope.dobDay = '';
+    $scope.dobMonth = '';
+    $scope.dobYear = '';
+    $scope.gender = '';
+    $scope.id = '';
+    $scope.pin = '';
+    $scope.idMethod = '';
+
+    $scope.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     $scope.update = (user) => {
-      console.log(user);
       const req = new XMLHttpRequest();
       req.open('POST', 'http://localhost:4002/signup');
       req.setRequestHeader("Authorization", "Negotiate");
@@ -26,14 +32,14 @@ angular.module('formLoginApp', ['ngCookies'])
       req.onload = (serverResponse) => {
         if (req.readyState === 4) {
           if (req.status === 200) {
-            $cookies.put("user", req.response)
+            $cookies.put("user", req.response);
           } else {
-            console.log('no response')
+            console.log('no response');
           }
         } else {
-          console.log('no response')
+          console.log('no response');
         }
-      }
+      };
       req.setRequestHeader("Authorization", "Negotiate");
       req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
       req.send(JSON.stringify(user));
@@ -42,10 +48,4 @@ angular.module('formLoginApp', ['ngCookies'])
 
 angular.module('testPage', ['ngCookies'])
   .controller('testPageController', ['$scope', '$cookies', ($scope, $cookies) => {
-    $scope.testFunction = function () {
-      // const req = new XMLHttpRequest();
-      // req.open('GET', 'http://localhost:4002/testPage', true);
-      // req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-      // req.send();
-    };
   }]);
