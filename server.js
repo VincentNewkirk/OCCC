@@ -5,13 +5,20 @@ const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 4002;
 const app = express();
 
-//not sure if this will work with out exporting config
 //might need to auth any domain using firebase in the console - auth
 //form needs homepage redirect, or login page
 //make forms use ng-repeat
 //pages load angular each time they load...
 //adobe sign free trial
 //firebase has simple UI for logins
+//test multiple logins, make sure people dont get someone else's id serverside
+//fbdb is still set to public
+//set cookies to die after a certain time
+//dont forget about the app
+//seems to be some lag with the xhr returning simple text
+//make sure if 2 users login at the same time, they get the right cookie
+//make xhr not check if 200 or not run as async?
+//had to set 2 second timer waiting for xhr with uid, might be fb is mad
 
 const config = {
   apiKey: "AIzaSyDr-cAxhiDSQqlQfe5jGc-5UsQ0l6La5FE",
@@ -73,6 +80,9 @@ app.post('/login', (req, res) => {
   .catch((error) => {
     console.log(`Login failed for user: ${req.body.email} | ${error.code} : ${error.message}`);
   });
+  setTimeout(() => {
+    res.send(firebase.auth().currentUser.uid);
+    }, 2000);
 });
 
 app.get('/signout', (req, res) => {
@@ -84,7 +94,7 @@ app.get('/signout', (req, res) => {
 });
 
 app.get('/testPage', (req, res) => {
-  console.log('attempting to find current user.. ');
+  console.log('Attempting to find current user... ');
   let user = firebase.auth().currentUser;
   console.log(user);
 });
