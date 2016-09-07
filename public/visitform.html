@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   <title>Calendar Example</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 </head>
 <body>
-  <div ng-app="formSignupApp">
-    <div ng-controller="formSignupController">
-      <form>
-        Date: <input type="text" ng-model="user.email" /><br />
-        Time: <input type="password" ng-model="user.password" /><br />
-        <input type="submit" ng-click="update(user)" value="Save" />
-      </form>
+  <div ng-app="visitForm">
+    <div ng-controller="visitFormController">
+      <ul class="formListClass">
+        <li class="animate-repeat" ng-repeat="forms in formFields">
+          <form>
+            <input type="text" ng-click="update(user)" value="{{forms.name}}" />
+          </form>
+        </li>
     </div>
   </div>
   <script src="app/controller.js"></script>

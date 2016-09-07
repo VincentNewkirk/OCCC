@@ -46,6 +46,20 @@ angular.module('formLoginApp', ['ngCookies'])
     };
   }]);
 
+angular.module('visitForm', [])
+  .controller('visitFormController', ['$scope', ($scope) => {
+    $scope.formFields = [{name: 'test1'}, {name: 'test2'}];
+
+
+/*    $scope.update = (user) => {
+      const req = new XMLHttpRequest();
+      req.open('POST', 'http://localhost:4002/visitForm');
+      req.setRequestHeader("Authorization", "Negotiate");
+      req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      req.send(JSON.stringify(user));
+    };*/
+  }]);
+
 angular.module('testPage', ['ngCookies'])
   .controller('testPageController', ['$scope', '$cookies', ($scope, $cookies) => {
   }]);
