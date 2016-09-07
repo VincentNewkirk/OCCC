@@ -20,6 +20,7 @@ const config = {
   storageBucket: "calendar-test-950b1.appspot.com",
 };
 firebase.initializeApp(config);
+//Enable logging messages to spam the console.
 // firebase.database.enableLogging((logMessage) => {
 //   console.log(`${new Date().toISOString()} : ${logMessage}`);
 // });
@@ -55,6 +56,7 @@ app.post('/signup', (req, res) => {
     }
   });
 });
+
 const checkReqBody = reqBody => {
   if(reqBody.fullName.length > 30 || !validateEmail(reqBody.email) || !reqBody.phone.length >= 7) {
     return true;
@@ -69,7 +71,7 @@ const validateEmail = email => {
 app.post('/login', (req, res) => {
   firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password)
   .catch((error) => {
-    console.log(`this is the firebase error code from login- ${error.code} : ${error.message}`);
+    console.log(`Login failed for user: ${req.body.email} | ${error.code} : ${error.message}`);
   });
 });
 
@@ -77,14 +79,14 @@ app.get('/signout', (req, res) => {
   firebase.auth().signOut().then(() => {
   // Sign-out successful.
   }, (error) => {
-    console.log(`Error with signout ${error}`);
+    console.log(`Signout failed | ${error.code} : ${error.message}`);
   });
 });
 
 app.get('/testPage', (req, res) => {
-  console.log('attempting to find current user.. ')
-  var user = firebase.auth().currentUser;
-  console.log(user)
+  console.log('attempting to find current user.. ');
+  let user = firebase.auth().currentUser;
+  console.log(user);
 });
 
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
