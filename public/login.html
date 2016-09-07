@@ -5,14 +5,25 @@
   <title>Login</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-cookies.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-cookies.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="./signup.css">
 </head>
 <body>
   <div ng-app="formLoginApp">
-    <div ng-controller="formLoginController">
+    <div ng-controller="formLoginController" class="container">
       <form>
-        Email: <input type="text" ng-model="user.email" /><br />
-        Password: <input type="password" ng-model="user.password" /><br />
+        <div class="row">
+          <h4>Login</h4>
+          <div class="input-group input-group-icon">
+            <input type="text" ng-model="user.email" placeholder="Email"/>
+            <div class="input-icon"><i class="fa fa-user"></i></div>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="password" ng-model="user.password" placeholder="Password"/>
+            <div class="input-icon"><i class="fa fa-key"></i></div>
+          </div>
+        </div>
         <input type="submit" ng-click="update(user)" value="Login" />
       </form>
     </div>
