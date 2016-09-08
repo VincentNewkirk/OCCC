@@ -2,11 +2,31 @@ angular.module('visitFormApp', [])
   .controller('visitFormController', ['$scope', ($scope) => {
     $scope.formFields = [
       {
-        name: 'test1',
+        name: 'Name',
         fa: 'fa fa-key',
       },
       {
-        name: 'test2',
+        name: 'Specify Relationship',
+        fa: 'fa fa-user',
+      },
+      {
+        name: 'Home Address',
+        fa: 'fa fa-key',
+      },
+      {
+        name: 'City',
+        fa: 'fa fa-user',
+      },
+      {
+        name: 'Inmate Name',
+        fa: 'fa fa-user',
+      },
+      {
+        name: 'Applicant Social Security Number',
+        fa: 'fa fa-key',
+      },
+      {
+        name: 'Date',
         fa: 'fa fa-user',
       },
     ];
