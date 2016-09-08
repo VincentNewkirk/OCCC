@@ -5,21 +5,14 @@ const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 4002;
 const app = express();
 
-//might need to auth any domain using firebase in the console - auth
-//form needs homepage redirect, or login page
-//make forms use ng-repeat
-//pages load angular each time they load...
+//might need to auth any domain using firebase in the console - authDomain
 //adobe sign free trial
-//firebase has simple UI for logins
 //test multiple logins, make sure people dont get someone else's id serverside
 //fbdb is still set to public
-//set cookies to die after a certain time
 //dont forget about the app
-//seems to be some lag with the xhr returning simple text
-//make sure if 2 users login at the same time, they get the right cookie
 //make xhr not check if 200 or not run as async?
 //had to set 2 second timer waiting for xhr with uid, might be fb is mad
-//remove old calendar dates by day (so week old items, check once per day)
+//2 layers protectiong, like pswd and ip for fb
 
 const config = {
   apiKey: "AIzaSyDr-cAxhiDSQqlQfe5jGc-5UsQ0l6La5FE",
