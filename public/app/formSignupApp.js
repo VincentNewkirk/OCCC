@@ -14,30 +14,22 @@ angular.module('formSignupApp', [])
 
     $scope.accountInfo = [
       {
-        model: {
-          key: 'user.fullName',
-        },
+        model: '',
         placeholder: 'Full Name',
         fa: 'fa-user',
       },
       {
-        model: {
-          key: 'user.email',
-        },
+        model: '',
         placeholder: 'Email Address',
         fa: 'fa-envelope',
       },
       {
-        model: {
-          key: 'user.password',
-        },
+        model: '',
         placeholder: 'Password',
         fa: 'fa-key',
       },
       {
-        model: {
-          key: 'user.phone',
-        },
+        model: '',
         placeholder: 'Phone Number',
         fa: 'fa-phone',
       },
