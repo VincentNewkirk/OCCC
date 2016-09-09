@@ -1,5 +1,5 @@
-angular.module('formLoginApp', ['ngCookies'])
-  .controller('formLoginController', ['$scope', '$cookies', ($scope, $cookies) => {
+angular.module('CalendarTest')
+  .controller('FormLoginController', ['$scope', '$cookies', function($scope, $cookies) {
     $scope.email = '';
     $scope.password = '';
     $scope.update = (user) => {
