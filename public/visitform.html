@@ -1,30 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="/styles/styles.css">
-  <link rel="stylesheet" type="text/css" href="styles/signup.css">
-  <title>Calendar Example</title>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script> <link rel="stylesheet" type="text/css" href="styles/signup.css">
-  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-</head> 
-<body>
-  <div ng-app="visitFormApp">
-    <div ng-controller="visitFormController" class="container">
-      <ul style="list-style:none;">
-        <form>
-          <div class="row">
-            <h4>Signup for a visit</h4>
-            <li class="animate-repeat" ng-repeat="forms in formFields">
-              <div class="input-group input-group-icon">
-                <input type="text" ng-click="update(user)" value="{{forms.name}}" />
-                <div class="input-icon"><i class="fa fa-user"></i></div>
-              </div>
-            </li>
+<div class="container">
+  <ul style="list-style:none;">
+    <form>
+      <div class="row">
+        <h4>Signup for a visit</h4>
+        <li class="animate-repeat" ng-repeat="forms in formFields">
+          <div class="input-group input-group-icon">
+            <input type="text" ng-click="update(user)" value="{{forms.name}}" />
+            <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
-        </form>
-    </div>
-  </div>
-  <script src="app/visitFormApp.js"></script>
-</body>
-</html>
+        </li>
+      </div>
+    </form>
+</div>

@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app='CalendarTest'>
 <head>
   <meta charset="UTF-8">
   <title>Calendar Example</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js">
+  </script>
   <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+  <link rel="stylesheet" type="text/css" href='/styles/signup.css'>
+  <script src="https://code.angularjs.org/1.4.5/angular-route.js"></script>
+  <script src='app/app.js'></script>
+  <script src="app/routes.js"></script>
+  <script src='app/visitFormController.js'></script>
+  <script src='app/formSignupController.js'></script>
+  <script src='app/formLoginController.js'></script>
 </head>
 <body>
-  <a href="./signup.html">Sign Up Now!</a><br />
-  <a href="./login.html">Login!</a><br />
-  <a href="./testPage.html">Test Page</a><br />
-  <a href="./visitform.html">Complete This Form To Apply For A Visit</a><br />
-  <script src="app/controller.js"></script>
+  <a href="#/signup">Sign Up Now!</a><br />
+  <a href="#/login">Login!</a><br />
+  <a href="#/visitform">Complete This Form To Apply For A Visit</a><br />
+  <div ng-view></div>
 </body>
 </html>
