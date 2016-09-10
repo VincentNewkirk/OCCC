@@ -1,5 +1,5 @@
-angular.module('formSignupApp', [])
-  .controller('formSignupController', ['$scope', ($scope) => {
+angular.module('CalendarTest')
+  .controller('FormSignupController', ['$scope', function($scope) {
     $scope.email = '';
     $scope.password = '';
     $scope.phone = '';

@@ -1,5 +1,5 @@
-angular.module('visitFormApp', [])
-  .controller('visitFormController', ['$scope', ($scope) => {
+angular.module('CalendarTest')
+  .controller('VisitFormController', ['$scope', function($scope) {
     $scope.formFields = [
       {
         name: 'Name',

@@ -16,15 +16,13 @@
           <div class="row">
             <h4>Signup for a visit</h4>
             <li class="animate-repeat" ng-repeat="forms in formFields">
-              <div class="input-group input-group-i con">
+              <div class="input-group input-group-icon">
                 <input type="text" ng-click="update(user)" value="{{ forms.name }}" />
                 <div class="input-icon"><i class="fa {{ forms.fa }}"></i></div>
               </div>
             </li>
           </div>
-        </form>
-    </div>
-  </div>
-  <script src="app/visitFormApp.js"></script>
-</body>
-</html>
+        </li>
+      </div>
+    </form>
+</div>
